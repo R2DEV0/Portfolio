@@ -9,7 +9,7 @@ import ParticlesBg from 'particles-bg';
 
 function App() {
   return (
-    <div className="container">
+    <div>
       <ParticlesBg type="lines" bg={true} />
       <Router>
         <Main path = '/'/>

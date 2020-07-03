@@ -1,6 +1,7 @@
-import React from 'react';
+import React,{useState} from 'react';
+import {Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavLink,UncontrolledDropdown,DropdownToggle,DropdownMenu,DropdownItem,NavbarText} from 'reactstrap';
 import './Main.css';
-import { navigate, Link } from '@reach/router';
+import { Link } from '@reach/router';
 import Pic from '../quizpic.png';
 import Pic2 from '../Contract.png';
 import Pic3 from '../OverTime.jpg';
@@ -8,48 +9,63 @@ import Logo1 from '../LinkedIn2.png';
 import Logo2 from '../Github2.png';
 import Logo3 from '../mail2.png';
 import ReactTooltip from "react-tooltip";
+import Swing from 'react-reveal/Fade';
 
 
-export default (props) =>{
+export default () =>{
 
     const HoverIn = (e) => {};
     const HoverOut = (e) => {};
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen(!isOpen);
 
     return(
+        <div>
+            <div>
+                <Navbar className="navbar navbar-dark bg-dark" light expand="md">
+                <NavbarToggler onClick={toggle} />
+                    <Collapse isOpen={isOpen} navbar>
+                    <Nav className="mr-auto" navbar>
+                        <NavItem>
+                            <NavLink><Link to = "/resume" style={{color:'white'}}> <button className='btn btn-outline-light'>My Resume</button></Link></NavLink>
+                        </NavItem>
+                        <li class="nav-link"> </li>
+                        <NavItem className="mt-3">  
+                            <a href="https://www.linkedin.com/in/kevin-chancey-a736169b/">
+                                <img src={Logo1} style={{height:"30px"}} 
+                                    onMouseEnter={(e) => HoverIn(e.target.style.height = '32px', e.target.style.width ='auto')} 
+                                    onMouseLeave={(e) => HoverOut(e.target.style.height = '30px', e.target.style.width ='auto')}>
+                                </img>
+                            </a>
+                        </NavItem>
+                        <li class="nav-link"> </li>
+                        <NavItem className="mt-3">
+                            <a href="https://github.com/R2DEV0">
+                                <img src={Logo2} style={{height:"30px"}}
+                                    onMouseEnter={(e) => HoverIn(e.target.style.height = '32px', e.target.style.width ='auto')} 
+                                    onMouseLeave={(e) => HoverOut(e.target.style.height = '30px', e.target.style.width ='auto')}>
+                                </img>
+                            </a>
+                        </NavItem>
+                        <li class="nav-link"> </li>
+                        <NavItem className="mt-3">
+                            <a href="mailto:r2devo@gmail.com">
+                                <img src={Logo3} style={{height:"30px", borderRadius:"5px"}}
+                                    onMouseEnter={(e) => HoverIn(e.target.style.height = '32px', e.target.style.width ='auto')} 
+                                    onMouseLeave={(e) => HoverOut(e.target.style.height = '30px', e.target.style.width ='auto')}>
+                                </img>
+                            </a>
+                        </NavItem>
+                    </Nav>
+                    </Collapse>
+            </Navbar>
+        </div>
         <div className="container">
-            {/* <div className="row mt-1 mb-1 offset-8 links"> */}
-                <div className='resumebtn mt-1 mb-1 offset-8'>
-                    <Link to = "/resume"><button className='btn btn-outline-light'>My Resume</button></Link>
-                </div>
-                <div className="row mt-1 mb-1 offset-8 links">
-                <div className="link1 mt-1">
-                    <a href="https://www.linkedin.com/in/kevin-chancey-a736169b/">
-                        <img src={Logo1} style={{height:"30px"}} 
-                            onMouseEnter={(e) => HoverIn(e.target.style.height = '32px', e.target.style.width ='auto')} 
-                            onMouseLeave={(e) => HoverOut(e.target.style.height = '30px', e.target.style.width ='auto')}>
-                        </img>
-                    </a>
-                </div>
-                <div className="link2 mt-1">
-                    <a href="https://github.com/R2DEV0">
-                        <img src={Logo2} style={{height:"30px"}}
-                            onMouseEnter={(e) => HoverIn(e.target.style.height = '32px', e.target.style.width ='auto')} 
-                            onMouseLeave={(e) => HoverOut(e.target.style.height = '30px', e.target.style.width ='auto')}>
-                        </img>
-                    </a>
-                </div>
-                <div className="link3 mt-1">
-                    <a href="mailto:r2devo@gmail.com">
-                        <img src={Logo3} style={{height:"30px", borderRadius:"5px"}}
-                            onMouseEnter={(e) => HoverIn(e.target.style.height = '32px', e.target.style.width ='auto')} 
-                            onMouseLeave={(e) => HoverOut(e.target.style.height = '30px', e.target.style.width ='auto')}>
-                        </img>
-                    </a>
-                </div>
-            </div>
             <div className='scroll'>
             <div className="col-10 offset-1 text-center Kevin">
-                <h1 id="main"><span style={{color:"red", fontWeight:"bold"}}>Hey</span> I'm Kevin</h1>
+                <Swing>
+                    <h1 id="main"><span style={{color:"red", fontWeight:"bold"}}>Hey</span> I'm Kevin</h1>
+                </Swing>
                 <p> I am a Full-Stack web developer with experience working in: <br/> Python(Django) - C#(asp.Net) - MongoDB, Express, React, NodeJS (MERN)
                 </p>
                 My Story:
@@ -80,11 +96,12 @@ export default (props) =>{
                     /></a></a>
                 </div>
                     <div className="col-lg-4 mt-1 text-center proj3">
-                    <a data-tip data-for='differenciator'><p><a href="https://github.com/R2DEV0/Differentiator/tree/master" style={{color:"white"}} onMouseEnter={(e) => HoverIn(e.target.style.fontWeight = 'bold')} onMouseLeave={(e) => HoverIn(e.target.style.fontWeight = 'normal')}>The Differenciator (C#)</a></p></a>
-                    <a data-tip data-for='differenciator'><a href="https://github.com/R2DEV0/Differentiator/tree/master"><img className="col-12" src={Pic3} alt="Differenciator" style={{height:"80%", width:"auto"}}
-                        onMouseEnter={(e) => HoverIn(e.target.style.height = '82%', e.target.style.width ='auto')} 
-                        onMouseLeave={(e) => HoverOut(e.target.style.height = '80%', e.target.style.width ='auto')}
-                    /></a></a>
+                        <a data-tip data-for='differenciator'><p><a href="https://github.com/R2DEV0/TheRandomizer" style={{color:"white"}} onMouseEnter={(e) => HoverIn(e.target.style.fontWeight = 'bold')} onMouseLeave={(e) => HoverIn(e.target.style.fontWeight = 'normal')}>The Randomizer (C#)</a></p></a>
+                            <a data-tip data-for='differenciator'><a href="https://github.com/R2DEV0/TheRandomizer"><img className="col-12" draggable="false" src={Pic3} alt="TheRandomizer" style={{height:"80%", width:"auto"}}
+                            onMouseEnter={(e) => HoverIn(e.target.style.height = '82%', e.target.style.width ='auto')} 
+                            onMouseLeave={(e) => HoverOut(e.target.style.height = '80%', e.target.style.width ='auto')}
+                        /></a></a>
+                    </div>
                     <ReactTooltip id='differenciator' place="bottom" type='success' effect="float">
                         <span>
                             Small randomizer app for school curriculums <br/> being adopted accross the world!<br/>
@@ -104,7 +121,7 @@ export default (props) =>{
                     </ReactTooltip>
                 </div>
             </div>
-            </div>
         </div>
+    </div>
     )
 };
